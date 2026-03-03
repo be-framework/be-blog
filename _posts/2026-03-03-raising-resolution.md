@@ -5,6 +5,8 @@ author: Akihito Koriyama
 draft: false
 ---
 
+> We have been asking AI to write code from ambiguous specs. We should be asking AI to help us write the specs—through observation, not imagination.
+
 Tell an AI agent to "validate the title with an appropriate length" and you'll get a different implementation every time. One picks 255. Another picks 100. A third skips validation entirely.
 
 Hand it `"maxLength": 80, "minLength": 1` and there's exactly one implementation. Every time. Every agent.
