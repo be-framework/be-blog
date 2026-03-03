@@ -6,75 +6,69 @@ tags: [be-framework, ai, semantic-ex, alps, schema-driven-development]
 draft: false
 ---
 
-Tell an AI agent to "validate the title with an appropriate length" and you'll get a different implementation every time. One agent picks 255 characters. Another picks 100. A third doesn't validate at all because "appropriate" felt optional.
+Tell an AI agent to "validate the title with an appropriate length" and you'll get a different implementation every time. One picks 255. Another picks 100. A third skips validation entirely.
 
-Now hand it `"maxLength": 80, "minLength": 1` and there's exactly one implementation. Every time. Every agent.
+Hand it `"maxLength": 80, "minLength": 1` and there's exactly one implementation. Every time. Every agent.
 
-This is the core problem of AI-driven development: natural language specs are lossy. The more ambiguous your input, the more divergent your output. And we're feeding AI the most ambiguous artifact in software engineering—the spec written in prose.
+Natural language specs are lossy. The more ambiguous your input, the more divergent your output.
 
-## How We Got Here
+## The Problem
 
-For decades, we've decided software constraints in meeting rooms. Someone says "titles should be a reasonable length." Someone else nods. It gets written into a Google Doc. Six months later, a developer interprets "reasonable" as 500 characters because they once saw a blog title that long.
+Specs have always been written in prose. "Titles should be a reasonable length." Everyone nods. Six months later, "reasonable" means something different to every developer who reads it.
 
-This worked—barely—when humans were the only ones reading specs. Humans share cultural context. They can ask clarifying questions. They can infer intent from a raised eyebrow.
+This worked—barely—when humans were the only readers. Humans share context. They ask follow-up questions. They infer.
 
-AI agents can't. They take your words at face value, and "appropriate length" has no face value. It's a blank check.
+AI agents take your words at face value. "Appropriate length" has no face value.
 
 ## Resolution as a Process
 
-The Be Framework treats development as a process of raising resolution—taking ambiguous human intent and sharpening it, step by step, until there's nothing left to interpret.
+The [Be Framework](https://github.com/be-framework/be-framework) treats development as raising resolution—sharpening ambiguous intent until there's nothing left to interpret.
 
 ```
 User Story        → ambiguous (human language)
-ALPS Profile      → structured (state transitions, semantic descriptors)
-Semantic-Ex       → observed (data-driven constraint discovery)
-JSON Schema       → unambiguous (machine-verifiable contract)
-Implementation    → convergent (one schema, one outcome)
+ALPS Profile      → structured (state transitions, semantics)
+Semantic-Ex       → observed (constraint discovery from data)
+JSON Schema       → unambiguous (machine-verifiable)
+Implementation    → convergent
 ```
 
-Each step eliminates a class of ambiguity. By the time you reach the schema, there are no opinions left—only facts.
+Each step eliminates a class of ambiguity. By the schema, there are no opinions left—only facts.
 
-## Semantic-Ex: The Step That Changes Everything
+## Semantic-Ex
 
-Here's where it gets interesting. Between the ALPS profile and the JSON Schema, there's a step we call Semantic-Ex—Semantic Exercise. It works like this:
+Between the ALPS profile and the JSON Schema, there's a step called Semantic-Ex. It works like this:
 
-1. **AI generates 50 realistic fake records** based on the domain model
-2. **AI observes patterns** in its own generated data
-3. **AI proposes constraints** with evidence: "Max title length across 50 records: 73 chars. Suggest 80?"
-4. **Human approves or adjusts**: "80 is fine." Done.
+1. **AI generates 50 realistic fake records** from the domain model
+2. **AI observes its own data**: max lengths, null rates, edge cases
+3. **AI proposes constraints**: "Max title across 50 records: 73 chars. Suggest 80?"
+4. **Human approves**: "80 is fine."
 
-This is bottom-up constraint discovery. Not top-down decree.
+Bottom-up constraint discovery. Not top-down decree.
 
-Traditional development does the opposite. A human imagines what the data looks like, writes constraints from that imagination, and hopes reality agrees. It usually doesn't. The "simple blog post" turns into a 250-line `PostService` the moment you add image processing, approval workflows, and cache invalidation.
+## Why This Needs AI
 
-## Why AI Is Uniquely Good at This
+Two properties make AI uniquely suited here.
 
-There's a specific cognitive property that makes AI ideal for Semantic-Ex: **it has no authorship bias**.
+**Humans can't generate good fake data.** The first 10 records are thoughtful. The rest are copy-paste. At 500 records, quality collapses. AI doesn't fatigue. It doesn't cluster around assumptions. It produces edge cases naturally—URLs in title fields, Unicode, empty strings—without being told to.
 
-When a human writes 50 test records by hand, the first 10 are thoughtful. The rest are copy-paste with minor tweaks. The data clusters around the human's assumptions. Edge cases appear only when deliberately injected, and they follow predictable patterns.
+**Humans can't self-review.** When you write data, you see what you expected to see. That's why code review exists—we need a second pair of eyes because the first pair is compromised. AI generates and evaluates as separate tasks. No authorship bias. It can note that 3 of its own 50 records contain URLs in the title field without feeling embarrassed about producing them.
 
-Worse: when that same human reviews their own data, they see what they expected to see. This is a well-documented cognitive bias. It's why we invented code review, QA teams, and pair programming—we need a second pair of eyes because the first pair is compromised.
+We've spent decades building organizational processes—code review, QA, pair programming—to work around this limitation. AI doesn't have it.
 
-AI doesn't have this problem. It generates data and evaluates it as if they were separate tasks—because internally, they are. There's no ego attached to the output. No unconscious defense of prior choices. It can generate 50 records and immediately note that 3 of them contain URLs in the title field, without feeling embarrassed about producing them in the first place.
+## The Schema as Plan
 
-This is something humans genuinely cannot do. We've spent decades building organizational processes to work around this limitation. AI just... doesn't have it.
+If you've used AI coding agents, you know: a good plan produces good code. A vague plan produces chaos.
 
-## The Schema as Agentic Plan
+Schemas are plans. Type-safe, machine-verifiable, unambiguous. Hand an agent a JSON Schema and say "write the validator"—there's one correct implementation. The agent can't drift. There's nowhere to drift to.
 
-If you've worked with AI coding agents, you know the pattern: a good plan produces good code. A vague plan produces chaos.
-
-Schemas are plans. They're the most precise plans you can write for data—type-safe, machine-verifiable, unambiguous. When you hand an agent a JSON Schema and say "write the validator," there's exactly one correct implementation. The agent can't drift. There's nowhere to drift to.
-
-This is why the resolution-raising process matters. Every step is building toward a goal that eliminates interpretation. ALPS eliminates ambiguity in state transitions. Schemas eliminate ambiguity in data constraints. By the time an AI agent touches the implementation, the creative decisions are already made.
-
-The agent's job isn't to make decisions. It's to execute them. And that's exactly what agents are good at.
+ALPS eliminates ambiguity in state transitions. Schemas eliminate ambiguity in data constraints. By the time an agent touches code, the creative decisions are already made. Its job is to execute, not decide.
 
 ## The Inversion
 
-Here's the shift: we've been asking AI to write code from ambiguous specs. We should be asking AI to help us write the specs themselves—through observation, not imagination.
+We've been asking AI to write code from ambiguous specs. We should be asking AI to write the specs—through observation, not imagination.
 
-Generate data. Observe patterns. Propose constraints. Get human approval. Produce schema. Then—and only then—write the code.
+Generate data. Observe patterns. Propose constraints. Get approval. Produce schema. *Then* write code.
 
-The human's role changes from "spec author" to "constraint approver." From writing to judging. From imagining data to looking at data. From "I think titles should be..." to "yes, 80 characters is right."
+The human's role shifts from spec author to constraint approver. From writing to judging. From imagining data to looking at it.
 
 This isn't replacing engineers. It's putting them where they belong—making decisions, not transcribing them.
