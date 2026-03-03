@@ -1,0 +1,14 @@
+title: Be Framework Blog
+description: Ontological programming for the AI era
+url: https://be-framework.github.io
+baseurl: /blog
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"

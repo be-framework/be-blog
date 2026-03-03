@@ -3,7 +3,7 @@ title: "Raising Resolution: Why AI Needs Schemas, Not Specs"
 date: 2026-03-03
 author: Akihito Koriyama
 tags: [be-framework, ai, semantic-ex, alps, schema-driven-development]
-draft: true
+draft: false
 ---
 
 Tell an AI agent to "validate the title with an appropriate length" and you'll get a different implementation every time. One agent picks 255 characters. Another picks 100. A third doesn't validate at all because "appropriate" felt optional.
