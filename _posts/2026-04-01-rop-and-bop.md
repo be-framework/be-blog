@@ -93,3 +93,4 @@ The two look at the same landscape from different elevations. From one, you see 
 ---
 
 - [Railway Oriented Programming](https://fsharpforfunandprofit.com/rop/) — Scott Wlaschin
+- [TypeScript 関数型スタイルでバックエンド開発のリアル](https://speakerdeck.com/naoya/typescript-guan-shu-xing-sutairudebatukuendokai-fa-noriaru) — Naoya Ito (TSKaigi 2024)

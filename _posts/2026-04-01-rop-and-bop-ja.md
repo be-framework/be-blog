@@ -94,3 +94,4 @@ BOPはその問題を解かない。問いの場所を変える。
 ---
 
 - [Railway Oriented Programming](https://fsharpforfunandprofit.com/rop/) — Scott Wlaschin
+- [TypeScript 関数型スタイルでバックエンド開発のリアル](https://speakerdeck.com/naoya/typescript-guan-shu-xing-sutairudebatukuendokai-fa-noriaru) — 伊藤直也 (TSKaigi 2024)
