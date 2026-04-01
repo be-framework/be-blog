@@ -19,7 +19,7 @@ Input → validate → extract → identify → save
 
 `cat | grep | sort` flows text through transformations. ROP flows domain data through functions — with error handling made explicit in the type system.
 
-From a TypeScript production system at Ikyu, a restaurant SaaS:
+A TypeScript example:
 
 ```typescript
 const workflow: WorkFlow = (command) =>
@@ -84,7 +84,7 @@ From this shift in question, self-proving existence, self-determined relations, 
 
 ## Accumulation
 
-Two years of production use at Ikyu. Fewer bugs. Errors made explicit. ROP solved a real problem.
+ROP solved a real problem.
 
 BOP doesn't solve that problem. It moves where the question is.
 

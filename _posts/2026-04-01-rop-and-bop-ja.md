@@ -20,7 +20,7 @@ Input → validate → extract → identify → save
 
 `cat | grep | sort` がテキストを流すように、ROPはドメインデータを関数の連鎖に流す。エラーハンドリングを型システムで明示しながら。
 
-一休の飲食店向けSaaSでの実装：
+TypeScriptでの実装例：
 
 ```typescript
 const workflow: WorkFlow = (command) =>
@@ -85,7 +85,7 @@ BOPが問うのは：**そもそもこれは存在できるか？**
 
 ## 積み重なる
 
-一休での2年間の本番運用。バグは減り、エラーは明示的になった。ROPが解いた問題は実在する。
+ROPが解いた問題は実在する。
 
 BOPはその問題を解かない。問いの場所を変える。
 
