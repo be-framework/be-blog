@@ -65,15 +65,15 @@ OOP has no time. You can call `$user->getName()` after `$user->delete()`. A chry
 
 Be Framework restores time to objects.
 
-```
+```text
 PatientArrival → TriageAssessment → EmergencyCase
 ```
 
-Each type represents existence at a specific moment. `PatientArrival` is the existence at arrival, `TriageAssessment` is existence during assessment, `EmergencyCase` is existence once confirmed as emergency. The flow is unidirectional and irreversible. There is no going back.
+Each type represents existence at a specific moment. `PatientArrival` is the existence at arrival, `TriageAssessment` is existence during assessment, `EmergencyCase` is existence once confirmed as emergency. There is no going back.
 
 ## Immanence + Transcendence → New Immanence
 
-Every transformation follows one formula.
+Transformation follows one formula.
 
 ```php
 final readonly class TriageAssessment
@@ -93,7 +93,7 @@ final readonly class TriageAssessment
 }
 ```
 
-Immanence (`#[Input]`) meets transcendence (`#[Inject]`), and new immanence is born. Transcendence transforms the immanent and then vanishes. Like flour meeting yeast and heat to become bread. Like grapes meeting yeast and time to become wine.
+Immanence (`#[Input]`) meets transcendence (`#[Inject]`), and new immanence is born. Like flour meeting yeast and heat to become bread. Like grapes meeting yeast and time to become wine.
 
 No matter how complex the system, cut anywhere and you find the same structure. Nobody is in control. Each part is autonomous, forming a complex system.
 
@@ -104,7 +104,7 @@ No matter how complex the system, cut anywhere and you find the same structure. 
 final readonly class PatientArrival { ... }
 ```
 
-`#[Be]` is a declaration of "what I will become." No external controller or orchestrator decides. The object declares its own destiny.
+`#[Be]` is a declaration of "what I will become." The object declares its own destiny.
 
 The invocation is always this one line:
 
@@ -118,8 +118,8 @@ Complexity lives inside. From outside, this is all there is.
 
 If Tell, Don't Ask is an OOP principle, **Be, Don't Do** is what comes next.
 
-Don't command — define existence. The developer is not someone who implements behavior, but someone who defines the conditions for existence. Not what to do (Doing), but what to be (Being).
+Don't command — define existence. Not what to do (Doing), but what to be (Being).
 
-The moment you write `$email`, that variable accepts only valid email addresses. Not correct by accident — **correct by necessity**. What cannot be correct simply cannot exist.
+The moment you write `$email`, that variable accepts only valid email addresses. Not correct by accident — correct by necessity. What cannot be correct simply cannot exist.
 
 That is Be Framework.
