@@ -9,7 +9,7 @@ draft: false
 
 ## The Pipeline
 
-Railway Oriented Programming is one of the most elegant patterns in functional programming. Its core insight: a workflow is a pipeline where data flows through transformations, and failure is just another track.
+The core of Railway Oriented Programming is simple. A workflow is a pipeline. Failure is just another track.
 
 ```
 Input → validate → extract → identify → save
@@ -17,9 +17,9 @@ Input → validate → extract → identify → save
         Error       Error      Error     Error
 ```
 
-This is Unix pipes brought to the domain layer. Where `cat | grep | sort` transforms text through a chain of processes, ROP transforms domain data through a chain of functions — with error handling made explicit in the type system.
+`cat | grep | sort` flows text through transformations. ROP flows domain data through functions — with error handling made explicit in the type system.
 
-Here's what this looks like in practice, from a real TypeScript production system at the restaurant SaaS company Ikyu:
+From a TypeScript production system at Ikyu, a restaurant SaaS:
 
 ```typescript
 const workflow: WorkFlow = (command) =>
@@ -30,7 +30,7 @@ const workflow: WorkFlow = (command) =>
     .andThen(importReservationEvent)
 ```
 
-Each step is a function that takes data in and pushes transformed data out — or diverts to the error track. The state at each stage has its own type:
+Each stage has its own type:
 
 ```typescript
 UnvalidatedCommand
@@ -40,58 +40,52 @@ UnvalidatedCommand
         → SiteReservationEventImported
 ```
 
-The functional concern is clear: **data transformation**. ROP gives that transformation a failure context. Result types make errors explicit. Union types eliminate impossible states. Immutability prevents accidental corruption. This is Doing at its most refined.
+The functional concern is **data transformation**. ROP gives that transformation a failure context. Result types make errors explicit. Union types eliminate impossible states. Immutability prevents corruption.
 
 ## The Resonance
 
-If you look at the type chain above and then look at a Be Framework chain:
+Place a Be Framework chain next to it.
 
 ```
 OrderInput → OrderValidated → PaymentProcessed → OrderConfirmed
 ```
 
-The structural similarity is striking. Both express a domain workflow as a sequence of typed stages. Both use union types to constrain what can exist. Both are immutable. Both make each transition explicit.
-
-This is not coincidence. Both approaches are responding to the same problem: the chaos of unconstrained state. The functional approach and the being-oriented approach arrived at similar structures from different starting points.
+Union types constrain what can exist. Immutable. Each transition explicit. Different starting points, similar structures.
 
 ## The Subject
 
 The resemblance is structural. The difference is grammatical.
 
 ```typescript
-// ROP: the system transforms data
+// ROP
 const archived = archiveCustomer(customer)
 ```
 
 ```php
-// BOP: the domain transforms itself
+// BOP
 $becoming(new PatientArrival($vitals))
 ```
 
-In ROP, `extractActualVisitor(command)` — the system extracts. The pipeline processes data. Functions are applied *to* objects. The subject is the system, operating in the third person.
+In ROP, `extractActualVisitor(command)`. In BOP, a `PatientArrival` encounters a triage protocol and *becomes* an `EmergencyCase`.
 
-In BOP, a `PatientArrival` encounters a triage protocol and *becomes* an `EmergencyCase`. The subject is the domain itself, speaking in the first person. Nothing extracts. Nothing processes. The being transforms.
-
-This difference extends to architecture. The ROP workflow is an orchestrator — a conductor who knows the score and directs each instrument in sequence. In BOP, each being declares `#[Be]` — what it can become — and the chain self-organizes. This is choreography: each dancer knows only their own part, yet the performance coheres.
+The ROP workflow is a conductor with a score. In BOP, each being declares `#[Be]`. Nobody knows the whole.
 
 ## The Question
 
 ROP asks: **did this transformation succeed or fail?**
 
-This is a HOW question. How do we handle the error? How do we propagate the failure? How do we compose functions that might fail? ROP answers these questions beautifully — perhaps as well as they can be answered.
+How to handle the error. How to propagate failure. How to compose functions that might fail. A HOW question.
 
 BOP asks: **can this exist at all?**
 
-This is a WHETHER question. An `Email` doesn't get validated and produce `Result<Email, Error>`. It either exists or it doesn't. There is no error track because there is no track. Semantic variables define a world where invalid values simply cannot be — not a world where they're caught and diverted.
+An `Email` doesn't get validated and produce `Result<Email, Error>`. It exists, or it doesn't. There is no error track — there is no track. Semantic variables define a world where invalid values cannot be. A WHETHER question.
 
-The techniques that follow from this shift in question — self-proving existence, self-determined relations, choreography, immutability — are not individual features. They are all derived from a single change in perspective: **seeing the domain in the first person**.
+From this shift in question, self-proving existence, self-determined relations, and choreography all follow.
 
-ROP refines the answer. BOP changes the question.
+## Accumulation
 
-## Not a Replacement
+Two years of production use at Ikyu. Fewer bugs. Errors made explicit. ROP solved a real problem.
 
-ROP is not wrong. It may be the highest achievement of the Doing paradigm — data transformation made safe, explicit, and composable. Two years of production use at Ikyu confirms its practical strength: fewer bugs, better error handling, robust type safety.
+BOP doesn't solve that problem. It moves where the question is.
 
-BOP does not replace this. It asks what happens when you stop thinking about transformation entirely and start thinking about existence. The two are looking at the same landscape from different elevations. From one, you see the tracks and switches. From the other, you see that the trains were never separate from the rails.
-
-These perspectives accumulate. You don't abandon one to reach the other.
+The two look at the same landscape from different elevations. From one, you see tracks and switches. From the other, the trains were never separate from the rails.
