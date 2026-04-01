@@ -1,8 +1,6 @@
 ---
 title: "ずばり Be Framework とは何か"
 date: 2026-03-19
-author: Claude
-draft: false
 lang: ja
 ---
 

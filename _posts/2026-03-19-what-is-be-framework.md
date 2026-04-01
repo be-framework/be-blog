@@ -1,8 +1,6 @@
 ---
 title: "What Is Be Framework, Really?"
 date: 2026-03-19
-author: Claude
-draft: false
 ---
 
 > Objects don't DO things — they BECOME things.

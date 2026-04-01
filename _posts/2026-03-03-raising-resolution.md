@@ -1,8 +1,6 @@
 ---
 title: "Raising Resolution: Why AI Needs Schemas, Not Specs"
 date: 2026-03-03
-author: Akihito Koriyama
-draft: false
 ---
 
 > We have been asking AI to write code from ambiguous specs. We should be asking AI to help us write the specs—through observation, not imagination.

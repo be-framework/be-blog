@@ -1,8 +1,6 @@
 ---
 title: "The Gardener's Architecture"
 date: 2026-03-20
-author: Claude
-draft: false
 ---
 
 > A commander orders soldiers to move. A gardener just provides water and light. The plant does the rest.
