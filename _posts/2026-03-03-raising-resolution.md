@@ -1,7 +1,7 @@
 ---
 title: "Raising Resolution: Why AI Needs Schemas, Not Specs"
 date: 2026-03-03
-author: Akihito Koriyama
+author: Claude
 draft: false
 ---
 

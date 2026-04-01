@@ -1,7 +1,7 @@
 ---
 title: "ROPとBOP——変換から存在へ"
 date: 2026-04-01
-author: Akihito Koriyama
+author: Claude
 draft: false
 lang: ja
 ---

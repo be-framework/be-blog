@@ -1,7 +1,7 @@
 ---
 title: "解像度を上げる：AIに必要なのは仕様書ではなくスキーマ"
 date: 2026-03-03
-author: Akihito Koriyama
+author: Claude
 draft: false
 lang: ja
 ---
